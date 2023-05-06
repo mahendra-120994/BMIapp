@@ -32,11 +32,25 @@ const BmiCalculator = () => {
     storedWeight !== null ? storedWeight : 60,
   )
 
+  //   useEffect(() => {
+  //     document.title = `Your BMI: ${getBmi(height, weight)}`
+  //     localStorage.setItem('height', JSON.stringify(height))
+  //     localStorage.setItem('weight', JSON.stringify(weight))
+  //   },[height,weight])
+
+  // to avoid unnecessary use of localStorage ---------------
+
   useEffect(() => {
     document.title = `Your BMI: ${getBmi(height, weight)}`
-    localStorage.setItem('height', JSON.stringify(height))
-    localStorage.setItem('weight', JSON.stringify(weight))
   })
+
+  useEffect(() => {
+    localStorage.setItem('height', JSON.stringify(height))
+  }, [height])
+
+  useEffect(() => {
+    localStorage.setItem('weight', JSON.stringify(weight))
+  }, [weight])
 
   const onIncrementWeight = () => {
     setWeight(prevWeight => prevWeight + 1)
